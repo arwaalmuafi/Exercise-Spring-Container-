@@ -1,0 +1,148 @@
+Q1:
+
+The output is : hey from massage1
+
+Only getMassage1 is created and run, so it just prints hey from massage1 and returns "1" to the container.
+
+Q2:
+The output is : 
+hey from massage1
+ hey from massage2
+
+	•	First, getMassage1 runs and prints hey from massage1 because it has no dependencies.
+	•	Then, getMassage2 runs right after, printing hey from massage2 and returning data from getMassage3 to the container.
+
+
+Q3:
+The output is : 
+hey from massage1
+hey from massage3
+ hey from massage2
+
+	•	getMassage1 runs first since it has no dependencies and just returns "1".
+	•	Next, getMassage3 runs because getMassage2 needs it to be ready first.
+	•	getMassage2 is printed last, using the data from getMassage3 and returning it to the container.
+
+
+
+
+The output is : 
+hey from massage3
+ hey from massage2
+  hey from massage1
+
+	•	getMassage3 runs first because getMassage2 depends on it.
+	•	Then getMassage2 runs, using the result from getMassage3.
+	•	Finally, getMassage1 runs last, since it has no dependencies or beans depending on it.
+
+
+
+Q4:
+
+The output is: hey from massage1
+hey from massage3
+hey from massage2
+hey from controller
+
+	•	getMassage1 has no dependencies, so it runs first.
+	•	getMassage3 runs next, as getMassage2 needs it.
+	•	Then getMassage2 is created, using getMassage3 for its data.
+	•	Lastly, MainController runs, using getMassage2 as its data and printing hey from controller.
+
+
+The output is:
+hey from massage3 
+hey from massage2
+hey from massage1
+hey from controller
+
+	•	Here, getMassage3 starts because getMassage2 needs it.
+	•	Next, getMassage2 runs since it has what it needs from getMassage3.
+	•	Then getMassage1 runs, as it has no dependencies.
+	•	Finally, MainController uses getMassage2 and prints hey from controller.
+
+The output is:
+hey from massage3
+hey from massage2
+hey from controller
+hey from massage1
+
+	•	getMassage3 starts first as it’s needed by getMassage2.
+	•	Then getMassage2 is created, using getMassage3 data.
+	•	Next, MainController is set up, receiving getMassage2.
+	•	Finally, getMassage1 is created, as it’s independent.
+
+The output is:hey from massage2
+hey from massage3
+hey from massage1
+hey from controller
+
+	•	getMassage2 might run first, then Spring realizes it needs getMassage3.
+	•	So getMassage3 runs to satisfy getMassage2, which then returns data to the container.
+	•	After that, getMassage1 runs independently.
+	•	MainController is last, using getMassage2 as its data.
+
+The output is:
+hey from controller
+hey from massage1
+hey from massage2
+hey from massage3
+
+	•	MainController runs first, possibly due to a higher priority.
+	•	getMassage2 starts next as MainController needs it.
+	•	getMassage2 triggers getMassage3.
+	•	Lastly, getMassage1 runs as it’s not needed by other beans.
+
+The output is:
+hey from massage1
+hey from controller
+hey from massage3
+hey from massage2
+
+	•	getMassage1 runs first, then MainController.
+	•	Afterward, getMassage3 runs, as it’s needed by getMassage2.
+	•	Finally, getMassage2 runs, using getMassage3 data.
+
+
+
+
+Q5:
+The output is: hey from massage1
+                        hey from massage3
+                        hey from massage2
+                        hey from controller
+
+	•	getMassage1 runs first because it doesn’t need anything else, so it’s created and added to the container right away.
+	•	Then, getMassage3 runs because getMassage2 depends on it. Since getMassage2 needs the data from getMassage3, Spring creates getMassage3 next.
+	•	After that, getMassage2 can be created, using the result from getMassage3.
+	•	Finally, MainController is set up with getMassage2 as its data and prints "hey from controller".
+
+The output is: hey from massage3
+                        hey from massage2
+                        hey from massage1
+                        hey from controller
+
+	•	This time, getMassage3 runs first because getMassage2 needs it. So getMassage3 is created and added to the container first.
+	•	Next, getMassage2 is created because its dependency on getMassage3 has already been satisfied.
+	•	Afterward, getMassage1 runs. It has no dependencies and isn’t required by any other beans, so it’s created later.
+	•	Finally, MainController is initialized with getMassage2 and prints "hey from controller".
+
+
+The output is: hey from massage3
+                        hey from massage2
+                        hey from controller
+                        hey from massage1
+
+	•	Here, getMassage3 is created first since getMassage2 depends on it.
+	•	Next, getMassage2 is created using the result from getMassage3.
+	•	Then, MainController is set up with getMassage2 as its data and prints "hey from controller".
+	•	Finally, getMassage1 is created. Since it has no dependencies and isn’t needed by any other beans, it’s added to the container last.
+
+
+
+
+
+
+
+
+
